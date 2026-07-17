@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Rivera — Full-Stack Developer</title>
+<meta name="description" content="Example portfolio built by FolioForge: Alex Rivera, full-stack developer and CS student.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #030806; --panel: #071009; --border: rgba(74, 222, 128, 0.16);
+  --green: #4ade80; --green-dim: #16512e; --mint: #a7f3d0; --cyan: #22d3ee;
+  --text: #d9fbe5; --muted: #6f9c81;
+  --mono: "JetBrains Mono", monospace; --sans: "Inter", sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; line-height: 1.6; }
+::selection { background: rgba(74, 222, 128, 0.35); }
+
+/* scanline + grid backdrop */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    linear-gradient(rgba(74, 222, 128, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+}
+.glow { position: fixed; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(74, 222, 128, 0.09), transparent 65%);
+  top: -220px; left: 50%; transform: translateX(-50%); pointer-events: none; z-index: 0; }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 5vw; background: rgba(3, 8, 6, 0.8); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border); font-family: var(--mono); }
+nav .logo { color: var(--green); font-weight: 800; text-decoration: none; font-size: 1.05rem; }
+nav .logo::before { content: "~/"; color: var(--muted); }
+nav ul { display: flex; gap: 24px; list-style: none; }
+nav a { color: var(--muted); text-decoration: none; font-size: 0.82rem; transition: color .2s, text-shadow .2s; }
+nav a:hover { color: var(--green); text-shadow: 0 0 12px rgba(74, 222, 128, 0.8); }
+
+/* ============ hero ============ */
+.hero { position: relative; z-index: 1; min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  max-width: 1150px; margin: 0 auto; padding: 120px 5vw 60px; }
+.hero-left h1 { font-family: var(--mono); font-weight: 800; letter-spacing: -0.04em;
+  font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.05; margin: 18px 0; }
+.hero-left h1 span { color: var(--green); text-shadow: 0 0 30px rgba(74, 222, 128, 0.5); }
+.status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono);
+  font-size: 0.78rem; color: var(--mint); border: 1px solid var(--border);
+  padding: 6px 14px; border-radius: 999px; background: rgba(74, 222, 128, 0.06); }
+.status i { width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 10px var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 50% { opacity: 0.4; } }
+.hero-sub { color: var(--muted); max-width: 440px; margin-bottom: 30px; }
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn { font-family: var(--mono); font-weight: 600; font-size: 0.88rem;
+  padding: 13px 24px; border-radius: 10px; text-decoration: none; transition: all .2s; }
+.btn-solid { background: var(--green); color: #05270f; box-shadow: 0 0 30px rgba(74, 222, 128, 0.35); }
+.btn-solid:hover { transform: translateY(-3px); box-shadow: 0 0 46px rgba(74, 222, 128, 0.6); }
+.btn-line { border: 1px solid var(--border); color: var(--text); }
+.btn-line:hover { border-color: var(--green); background: rgba(74, 222, 128, 0.08); }
+
+/* terminal */
+.terminal { background: rgba(4, 12, 7, 0.92); border: 1px solid var(--border); border-radius: 14px;
+  overflow: hidden; box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(74, 222, 128, 0.07);
+  font-family: var(--mono); font-size: 0.85rem;
+  animation: float 7s ease-in-out infinite alternate; }
+@keyframes float { to { transform: translateY(-12px); } }
+.term-bar { display: flex; gap: 7px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: var(--green-dim); }
+.term-bar span { margin-left: 10px; color: var(--muted); font-size: 0.72rem; }
+.term-body { padding: 20px; min-height: 300px; }
+.term-body .line { margin-bottom: 8px; white-space: pre-wrap; word-break: break-word; }
+.term-body .prompt { color: var(--green); }
+.term-body .out { color: var(--mint); }
+.term-body .dim { color: var(--muted); }
+.term-caret { display: inline-block; width: 9px; height: 16px; background: var(--green);
+  vertical-align: text-bottom; animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+section { position: relative; z-index: 1; max-width: 1150px; margin: 0 auto; padding: 96px 5vw; }
+h2.sec { font-family: var(--mono); font-weight: 800; font-size: clamp(1.5rem, 3vw, 2.1rem);
+  letter-spacing: -0.03em; margin-bottom: 40px; }
+h2.sec::before { content: "// "; color: var(--green-dim); }
+h2.sec span { color: var(--green); }
+
+/* skills */
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 44px; }
+.skill { font-family: var(--mono); font-size: 0.84rem; }
+.skill .top { display: flex; justify-content: space-between; margin-bottom: 7px; }
+.skill .top b { color: var(--text); font-weight: 600; }
+.skill .top span { color: var(--muted); }
+.bar { height: 8px; background: rgba(74, 222, 128, 0.08); border-radius: 4px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; border-radius: 4px;
+  background: linear-gradient(90deg, var(--green-dim), var(--green));
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.5);
+  transition: width 1.3s cubic-bezier(.22,1,.36,1); }
+.bar.go i { width: var(--p); }
+
+/* contribution graph */
+.contrib { margin-top: 60px; }
+.contrib h3 { font-family: var(--mono); color: var(--muted); font-size: 0.82rem; margin-bottom: 14px; }
+#graph { display: grid; grid-template-rows: repeat(7, 11px); grid-auto-flow: column;
+  grid-auto-columns: 11px; gap: 3px; overflow-x: auto; padding-bottom: 6px; }
+#graph i { border-radius: 2px; background: rgba(74, 222, 128, 0.07); opacity: 0; animation: cell-in .4s forwards; }
+#graph i.l1 { background: #14532d; } #graph i.l2 { background: #15803d; }
+#graph i.l3 { background: #22c55e; } #graph i.l4 { background: #4ade80; box-shadow: 0 0 6px rgba(74,222,128,.7); }
+@keyframes cell-in { to { opacity: 1; } }
+
+/* projects */
+.proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.proj { background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
+  padding: 26px; position: relative; overflow: hidden; transition: transform .25s, border-color .25s, box-shadow .3s; }
+.proj:hover { transform: translateY(-6px); border-color: rgba(74, 222, 128, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(74, 222, 128, 0.1); }
+.proj::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  transform: translateX(-100%); transition: transform .6s; }
+.proj:hover::before { transform: translateX(100%); }
+.proj .num { font-family: var(--mono); color: var(--green-dim); font-weight: 800; font-size: 0.8rem; }
+.proj h3 { font-family: var(--mono); margin: 10px 0 8px; font-size: 1.1rem; }
+.proj p { color: var(--muted); font-size: 0.9rem; margin-bottom: 16px; }
+.tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tags span { font-family: var(--mono); font-size: 0.68rem; color: var(--mint);
+  border: 1px solid var(--border); padding: 3px 10px; border-radius: 999px; }
+
+/* timeline */
+.timeline { position: relative; padding-left: 30px; max-width: 640px; }
+.timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px;
+  background: linear-gradient(var(--green), transparent); }
+.tl-item { position: relative; padding-bottom: 34px; }
+.tl-item::before { content: ""; position: absolute; left: -29px; top: 6px; width: 12px; height: 12px;
+  border-radius: 50%; background: var(--bg); border: 2px solid var(--green);
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.7); }
+.tl-item time { font-family: var(--mono); font-size: 0.74rem; color: var(--green); }
+.tl-item h3 { margin: 6px 0 4px; font-size: 1.02rem; }
+.tl-item p { color: var(--muted); font-size: 0.9rem; }
+
+/* contact */
+.contact { text-align: center; }
+.contact p { color: var(--muted); max-width: 460px; margin: 0 auto 30px; }
+.socials { display: flex; justify-content: center; gap: 16px; margin-top: 30px; }
+.socials a { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); text-decoration: none;
+  border: 1px solid var(--border); border-radius: 10px; padding: 9px 16px; transition: all .2s; }
+.socials a:hover { color: var(--green); border-color: var(--green); }
+
+footer { text-align: center; padding: 36px 5vw 110px; color: var(--muted);
+  font-family: var(--mono); font-size: 0.75rem; border-top: 1px solid var(--border);
+  position: relative; z-index: 1; }
+
+/* FolioForge badge */
+.ff-badge { position: fixed; right: 18px; bottom: 18px; z-index: 50;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(5, 6, 15, 0.92); border: 1px solid rgba(124, 58, 237, 0.5);
+  color: #e9ebf8; text-decoration: none; font: 600 0.75rem var(--sans);
+  padding: 9px 15px; border-radius: 999px; backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: transform .2s, box-shadow .3s; }
+.ff-badge:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(124, 58, 237, 0.4); }
+.ff-badge b { background: linear-gradient(135deg, #a78bfa, #22d3ee);
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding-top: 110px; }
+  .skills-grid, .proj-grid { grid-template-columns: 1fr; }
+  nav ul { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+
+<nav>
+  <a class="logo" href="#top">alex</a>
+  <ul>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-left">
+    <span class="status"><i></i> open to internships · SF Bay Area</span>
+    <h1>Hi, I'm <span>Alex Rivera</span>_</h1>
+    <p class="hero-sub">CS senior &amp; full-stack developer. I build fast web apps,
+       tinker with distributed systems, and occasionally win hackathons.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-solid" href="#projects">view projects</a>
+      <a class="btn btn-line" href="#contact">./contact_me</a>
+    </div>
+  </div>
+  <div class="terminal" aria-hidden="true">
+    <div class="term-bar"><i></i><i></i><i></i><span>alex@portfolio: ~</span></div>
+    <div class="term-body" id="term"></div>
+  </div>
+</header>
+
+<section id="skills">
+  <h2 class="sec reveal">skills<span>.map()</span></h2>
+  <div class="skills-grid">
+    <div class="skill reveal"><div class="top"><b>TypeScript / React</b><span>92%</span></div><div class="bar"><i style="--p:92%"></i></div></div>
+    <div class="skill reveal"><div class="top"><b>Python / FastAPI</b><span>88%</span></div><div class="bar"><i style="--p:88%"></i></div></div>
+    <div class="skill reveal"><div class="top"><b>Go</b><span>74%</span></div><div class="bar"><i style="--p:74%"></i></div></div>
+    <div class="skill reveal"><div class="top"><b>PostgreSQL / Redis</b><span>81%</span></div><div class="bar"><i style="--p:81%"></i></div></div>
+    <div class="skill reveal"><div class="top"><b>Docker / Kubernetes</b><span>78%</span></div><div class="bar"><i style="--p:78%"></i></div></div>
+    <div class="skill reveal"><div class="top"><b>AWS / Terraform</b><span>70%</span></div><div class="bar"><i style="--p:70%"></i></div></div>
+  </div>
+  <div class="contrib reveal">
+    <h3>$ git log --oneline — one year of commits</h3>
+    <div id="graph" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="sec reveal">projects<span>.filter(p =&gt; p.shipped)</span></h2>
+  <div class="proj-grid">
+    <article class="proj reveal">
+      <span class="num">[01]</span>
+      <h3>meshnote</h3>
+      <p>Peer-to-peer collaborative notes with CRDTs — works offline, syncs when you don't. 1.2k GitHub stars.</p>
+      <div class="tags"><span>TypeScript</span><span>WebRTC</span><span>CRDT</span></div>
+    </article>
+    <article class="proj reveal">
+      <span class="num">[02]</span>
+      <h3>queuecraft</h3>
+      <p>A tiny distributed task queue in Go. Benchmarked at 40k jobs/s on a Raspberry Pi cluster.</p>
+      <div class="tags"><span>Go</span><span>gRPC</span><span>Raft</span></div>
+    </article>
+    <article class="proj reveal">
+      <span class="num">[03]</span>
+      <h3>campusfoods</h3>
+      <p>Meal-deal aggregator used by 3,000+ students on campus. React Native + FastAPI + a lot of scraping.</p>
+      <div class="tags"><span>React Native</span><span>FastAPI</span><span>PostgreSQL</span></div>
+    </article>
+    <article class="proj reveal">
+      <span class="num">[04]</span>
+      <h3>shaderplay</h3>
+      <p>Browser GLSL playground with live-reload and shareable links. HackMIT '25 finalist.</p>
+      <div class="tags"><span>WebGL</span><span>GLSL</span><span>Svelte</span></div>
+    </article>
+  </div>
+</section>
+
+<section id="experience">
+  <h2 class="sec reveal">experience<span>.log</span></h2>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <time>2025 — now</time>
+      <h3>SWE Intern · Streamline Labs</h3>
+      <p>Built real-time analytics pipelines processing 2M events/day; cut dashboard latency by 60%.</p>
+    </div>
+    <div class="tl-item reveal">
+      <time>2024 — 2025</time>
+      <h3>Teaching Assistant · Distributed Systems</h3>
+      <p>Ran labs for 120 students; wrote the autograder everyone loved to hate.</p>
+    </div>
+    <div class="tl-item reveal">
+      <time>2023 — 2024</time>
+      <h3>Founder · campus hack club</h3>
+      <p>Grew a 5-person study group into a 200-member club with weekly build nights.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2 class="sec reveal" style="text-align:center;">contact<span>.init()</span></h2>
+  <p class="reveal">Have an internship, a project, or just want to talk shop?
+     My inbox is always open.</p>
+  <a class="btn btn-solid reveal" href="mailto:alex@example.com">alex@example.com</a>
+  <div class="socials reveal">
+    <a href="#">github</a><a href="#">linkedin</a><a href="#">devpost</a>
+  </div>
+</section>
+
+<footer>© 2026 Alex Rivera — demo site · handcrafted, no templates</footer>
+
+<a class="ff-badge" href="../../" title="Get your own portfolio">⚡ Built with <b>FolioForge</b> — get yours from $5/mo</a>
+
+<script>
+(() => {
+  // reveal on scroll
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  // skill bars
+  const bio = new IntersectionObserver((es) => {
+    es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("go"); bio.unobserve(e.target); } });
+  }, { threshold: 0.5 });
+  document.querySelectorAll(".bar").forEach((el) => bio.observe(el));
+
+  // terminal typing sequence
+  const term = document.getElementById("term");
+  const script = [
+    { t: "prompt", text: "$ whoami" },
+    { t: "out", text: "alex-rivera — full-stack developer" },
+    { t: "prompt", text: "$ cat interests.txt" },
+    { t: "out", text: "distributed systems · web perf · hackathons" },
+    { t: "prompt", text: "$ uptime --studying" },
+    { t: "out", text: "4 years CS · graduating 2026" },
+    { t: "prompt", text: "$ ./deploy portfolio --provider folioforge" },
+    { t: "out", text: "✔ live at alex.dev in 48h" },
+    { t: "dim", text: "# your site could do this too ;)" },
+  ];
+  let li = 0, ci = 0;
+  let current = null;
+  const caret = document.createElement("span");
+  caret.className = "term-caret";
+  term.appendChild(caret);
+  function type() {
+    if (li >= script.length) return;
+    const item = script[li];
+    if (!current) {
+      current = document.createElement("div");
+      current.className = "line " + item.t;
+      term.insertBefore(current, caret);
+    }
+    ci++;
+    current.textContent = item.text.slice(0, ci);
+    term.insertBefore(caret, null);
+    if (ci >= item.text.length) {
+      li++; ci = 0; current = null;
+      setTimeout(type, item.t === "prompt" ? 160 : 520);
+    } else {
+      setTimeout(type, item.t === "prompt" ? 55 : 14);
+    }
+  }
+  setTimeout(type, 700);
+
+  // contribution graph (pseudo-random but pretty)
+  const graph = document.getElementById("graph");
+  let seed = 42;
+  const rand = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+  for (let w = 0; w < 52; w++) {
+    for (let d = 0; d < 7; d++) {
+      const cell = document.createElement("i");
+      const v = rand();
+      const wave = Math.sin(w / 5) * 0.22 + 0.5;
+      const level = v < 0.28 ? 0 : v < wave ? 1 : v < wave + 0.2 ? 2 : v < wave + 0.32 ? 3 : 4;
+      if (level > 0) cell.className = "l" + level;
+      cell.style.animationDelay = (w * 14) + "ms";
+      graph.appendChild(cell);
+    }
+  }
+})();
+</script>
+</body>
+</html>

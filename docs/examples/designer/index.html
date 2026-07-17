@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maya Kone — Product & Brand Designer</title>
+<meta name="description" content="Example portfolio built by FolioForge: Maya Kone, product and brand design student.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f6f0e6; --ink: #17172b; --coral: #ff5e78; --blue: #4d96ff;
+  --yellow: #ffb74d; --mint: #3ecfa3;
+  --serif: "Fraunces", serif; --sans: "Space Grotesk", sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: var(--sans);
+  overflow-x: hidden; line-height: 1.6; }
+::selection { background: var(--yellow); }
+
+.blob-cursor { position: fixed; width: 340px; height: 340px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 94, 120, 0.16), transparent 65%);
+  pointer-events: none; z-index: 0; transform: translate(-50%, -50%);
+  left: 50vw; top: 30vh; transition: left .5s cubic-bezier(.2,1,.3,1), top .5s cubic-bezier(.2,1,.3,1); }
+
+.reveal { opacity: 0; transform: translateY(34px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 5vw; mix-blend-mode: normal;
+  background: rgba(246, 240, 230, 0.85); backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--ink); }
+nav .logo { font-family: var(--serif); font-style: italic; font-weight: 700;
+  font-size: 1.4rem; color: var(--ink); text-decoration: none; }
+nav ul { display: flex; gap: 28px; list-style: none; }
+nav a:not(.logo) { color: var(--ink); text-decoration: none; font-weight: 600;
+  font-size: 0.9rem; position: relative; }
+nav a:not(.logo)::after { content: ""; position: absolute; left: 0; bottom: -4px;
+  width: 0; height: 2px; background: var(--coral); transition: width .25s; }
+nav a:not(.logo):hover::after { width: 100%; }
+
+/* ============ hero ============ */
+.hero { position: relative; z-index: 1; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 130px 5vw 40px; max-width: 1250px; margin: 0 auto; width: 100%; }
+.hero .hello { font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  font-size: 0.8rem; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 10px; }
+.hero .hello::before { content: ""; width: 40px; height: 2px; background: var(--ink); display: inline-block; }
+h1.giant { font-family: var(--serif); font-weight: 700;
+  font-size: clamp(3.2rem, 11vw, 8.5rem); line-height: 0.98; letter-spacing: -0.03em; }
+h1.giant .word { display: inline-block; overflow: hidden; vertical-align: bottom; }
+h1.giant .word span { display: inline-block; transform: translateY(110%);
+  animation: rise .9s cubic-bezier(.22,1,.36,1) forwards; }
+h1.giant .word:nth-child(2) span { animation-delay: .12s; }
+h1.giant .word:nth-child(3) span { animation-delay: .24s; color: var(--coral); font-style: italic; }
+@keyframes rise { to { transform: none; } }
+.hero-row { display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 40px; margin-top: 44px; flex-wrap: wrap; }
+.hero-row p { max-width: 380px; font-size: 1.05rem; }
+.hero-row .roll { flex-shrink: 0; }
+
+.btn-round { position: relative; display: grid; place-items: center;
+  width: 150px; height: 150px; border-radius: 50%; background: var(--ink); color: var(--cream);
+  text-decoration: none; font-weight: 600; font-size: 0.85rem; text-align: center;
+  transition: transform .3s, background .3s; overflow: hidden; }
+.btn-round:hover { transform: scale(1.08) rotate(-6deg); background: var(--coral); }
+.btn-round svg { position: absolute; inset: 8px; animation: spin 14s linear infinite; }
+.btn-round svg text { fill: var(--cream); font-size: 8.4px; letter-spacing: 2.2px; font-family: var(--sans); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.shape { position: absolute; z-index: 0; pointer-events: none; }
+.shape.s1 { top: 16%; right: 8%; width: 130px; height: 130px; background: var(--yellow);
+  border-radius: 46% 54% 60% 40%/50% 45% 55% 50%; animation: morph 8s ease-in-out infinite alternate; }
+.shape.s2 { bottom: 12%; left: 4%; width: 84px; height: 84px; background: var(--blue);
+  border-radius: 50%; animation: bob 5s ease-in-out infinite alternate; }
+.shape.s3 { top: 40%; right: 20%; width: 0; height: 0;
+  border-left: 34px solid transparent; border-right: 34px solid transparent;
+  border-bottom: 58px solid var(--mint); animation: bob 6s ease-in-out infinite alternate-reverse; }
+@keyframes morph { to { border-radius: 55% 45% 42% 58%/48% 60% 40% 52%; transform: rotate(30deg); } }
+@keyframes bob { to { transform: translateY(-24px); } }
+
+/* marquee */
+.marquee { border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
+  background: var(--ink); color: var(--cream); overflow: hidden; padding: 14px 0; }
+.marquee .track { display: flex; width: max-content; white-space: nowrap;
+  animation: slide 26s linear infinite;
+  font-family: var(--serif); font-style: italic; font-size: 1.25rem; }
+@keyframes slide { to { transform: translateX(-50%); } }
+.marquee em { color: var(--yellow); padding: 0 6px; }
+
+/* ============ work ============ */
+section { position: relative; z-index: 1; max-width: 1250px; margin: 0 auto; padding: 110px 5vw; }
+.sec-title { font-family: var(--serif); font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -0.02em; margin-bottom: 56px; }
+.sec-title em { font-style: italic; color: var(--coral); }
+
+.work { display: flex; flex-direction: column; }
+.work-row { display: grid; grid-template-columns: 90px 1fr 320px 40px; gap: 26px; align-items: center;
+  padding: 34px 10px; border-top: 2px solid var(--ink); text-decoration: none; color: var(--ink);
+  position: relative; transition: background .25s, padding-left .3s; }
+.work-row:last-child { border-bottom: 2px solid var(--ink); }
+.work-row:hover { background: rgba(23, 23, 43, 0.04); padding-left: 26px; }
+.work-row .idx { font-family: var(--serif); font-style: italic; font-size: 1.3rem; opacity: .5; }
+.work-row h3 { font-family: var(--serif); font-weight: 700; font-size: clamp(1.4rem, 3.4vw, 2.3rem); }
+.work-row .meta { font-size: 0.85rem; opacity: .7; }
+.work-row .arrow { font-size: 1.6rem; transition: transform .3s; }
+.work-row:hover .arrow { transform: translateX(10px) rotate(-45deg); }
+.work-row .peek { position: absolute; right: 12%; top: 50%; width: 210px; height: 140px;
+  border-radius: 14px; transform: translateY(-50%) scale(0) rotate(-6deg);
+  transition: transform .35s cubic-bezier(.22,1,.36,1); pointer-events: none; z-index: 2;
+  box-shadow: 0 24px 50px rgba(23, 23, 43, 0.3); }
+.work-row:hover .peek { transform: translateY(-50%) scale(1) rotate(3deg); }
+.peek.p1 { background: linear-gradient(135deg, var(--coral), var(--yellow)); }
+.peek.p2 { background: linear-gradient(135deg, var(--blue), var(--mint)); }
+.peek.p3 { background: repeating-linear-gradient(45deg, var(--ink), var(--ink) 12px, var(--yellow) 12px, var(--yellow) 24px); }
+.peek.p4 { background: radial-gradient(circle at 30% 30%, var(--mint), var(--blue)); }
+
+/* ============ about ============ */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.about-photo { position: relative; height: 420px; }
+.about-photo .frame { position: absolute; inset: 0; border-radius: 24px;
+  background: linear-gradient(160deg, var(--coral) 0%, var(--yellow) 55%, var(--mint) 100%);
+  display: grid; place-items: center; font-size: 6rem;
+  animation: morph 9s ease-in-out infinite alternate; overflow: hidden; }
+.about-photo .frame::after { content: "✿"; color: rgba(255, 255, 255, 0.9);
+  font-size: 7rem; animation: spin 18s linear infinite; }
+.about-photo .frame-back { position: absolute; inset: 0; border-radius: 24px;
+  border: 2px solid var(--ink); transform: translate(16px, 16px); z-index: -1; }
+.about-copy p { margin-bottom: 18px; font-size: 1.05rem; }
+.about-copy .big { font-family: var(--serif); font-size: 1.5rem; line-height: 1.4; }
+.fun-facts { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
+.fun-facts span { border: 2px solid var(--ink); border-radius: 999px; padding: 8px 18px;
+  font-weight: 600; font-size: 0.85rem; transition: all .2s; cursor: default; }
+.fun-facts span:hover { background: var(--ink); color: var(--cream); transform: rotate(-2deg); }
+
+/* ============ services ============ */
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.svc { border: 2px solid var(--ink); border-radius: 20px; padding: 32px 28px;
+  background: var(--cream); transition: transform .25s, box-shadow .25s; }
+.svc:hover { transform: translate(-5px, -5px); box-shadow: 8px 8px 0 var(--ink); }
+.svc .ico { font-size: 2rem; }
+.svc h3 { font-family: var(--serif); font-size: 1.35rem; margin: 14px 0 8px; }
+.svc p { font-size: 0.92rem; opacity: .85; }
+.svc:nth-child(1) .ico { color: var(--coral); }
+.svc:nth-child(2) { background: var(--ink); color: var(--cream); }
+.svc:nth-child(3) .ico { color: var(--blue); }
+
+/* ============ contact ============ */
+.contact { text-align: center; padding-bottom: 140px; }
+.contact h2 { font-family: var(--serif); font-weight: 700;
+  font-size: clamp(2.6rem, 8vw, 6rem); letter-spacing: -0.03em; line-height: 1.05; }
+.contact h2 a { color: var(--ink); text-decoration: none;
+  background-image: linear-gradient(var(--coral), var(--coral));
+  background-repeat: no-repeat; background-size: 100% 0.14em; background-position: 0 92%;
+  transition: background-size .35s; }
+.contact h2 a:hover { background-size: 100% 88%; color: var(--cream); }
+.contact p { margin-top: 24px; font-size: 1.05rem; }
+
+footer { border-top: 2px solid var(--ink); padding: 30px 5vw 110px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  font-size: 0.85rem; font-weight: 500; }
+
+.ff-badge { position: fixed; right: 18px; bottom: 18px; z-index: 50;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--ink); border: 2px solid var(--ink);
+  color: var(--cream); text-decoration: none; font-weight: 600; font-size: 0.75rem;
+  padding: 9px 15px; border-radius: 999px;
+  box-shadow: 4px 4px 0 rgba(23, 23, 43, 0.25); transition: transform .2s; }
+.ff-badge:hover { transform: translate(-2px, -4px); }
+.ff-badge b { color: var(--yellow); }
+
+@media (max-width: 860px) {
+  nav ul { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .work-row { grid-template-columns: 44px 1fr 30px; }
+  .work-row .meta, .work-row .peek { display: none; }
+  .shape { display: none; }
+  .blob-cursor { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="blob-cursor" aria-hidden="true"></div>
+
+<nav>
+  <a class="logo" href="#top">maya.</a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="shape s1" aria-hidden="true"></div>
+  <div class="shape s2" aria-hidden="true"></div>
+  <div class="shape s3" aria-hidden="true"></div>
+  <span class="hello">Maya Kone — design student, class of 2026</span>
+  <h1 class="giant">
+    <span class="word"><span>Design</span></span>
+    <span class="word"><span>that</span></span>
+    <span class="word"><span>flirts.</span></span>
+  </h1>
+  <div class="hero-row">
+    <p>I'm a product &amp; brand designer who believes interfaces should feel like a
+       conversation with someone charming. Currently studying at design school, always making things.</p>
+    <div class="roll">
+      <a class="btn-round" href="#work" aria-label="See my work">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <defs><path id="circ" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/></defs>
+          <text><textPath href="#circ">SEE THE WORK · SEE THE WORK · SEE THE WORK ·</textPath></text>
+        </svg>
+        ↓
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>branding <em>✿</em> UI design <em>✿</em> illustration <em>✿</em> motion <em>✿</em> art direction <em>✿</em> zines <em>✿</em>&nbsp;</span>
+    <span>branding <em>✿</em> UI design <em>✿</em> illustration <em>✿</em> motion <em>✿</em> art direction <em>✿</em> zines <em>✿</em>&nbsp;</span>
+  </div>
+</div>
+
+<section id="work">
+  <h2 class="sec-title reveal">Selected <em>work</em></h2>
+  <div class="work">
+    <a class="work-row reveal" href="#">
+      <span class="idx">01</span>
+      <h3>Blossom — dating app rebrand</h3>
+      <span class="meta">Brand identity · 2026</span>
+      <span class="arrow">→</span>
+      <span class="peek p1"></span>
+    </a>
+    <a class="work-row reveal" href="#">
+      <span class="idx">02</span>
+      <h3>Tidewater surf club</h3>
+      <span class="meta">Visual identity · merch · 2025</span>
+      <span class="arrow">→</span>
+      <span class="peek p2"></span>
+    </a>
+    <a class="work-row reveal" href="#">
+      <span class="idx">03</span>
+      <h3>Nightshift — music zine</h3>
+      <span class="meta">Editorial · print · 2025</span>
+      <span class="arrow">→</span>
+      <span class="peek p3"></span>
+    </a>
+    <a class="work-row reveal" href="#">
+      <span class="idx">04</span>
+      <h3>Loop — habit tracker UI</h3>
+      <span class="meta">Product design · 2024</span>
+      <span class="arrow">→</span>
+      <span class="peek p4"></span>
+    </a>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="sec-title reveal">About <em>me</em></h2>
+  <div class="about-grid">
+    <div class="about-photo reveal">
+      <div class="frame-back"></div>
+      <div class="frame"></div>
+    </div>
+    <div class="about-copy reveal">
+      <p class="big">Hi! I'm Maya — I design brands and products that make people
+         grin at their screens.</p>
+      <p>By day I'm finishing my BFA in communication design. By night I take on
+         freelance identities, obsess over type specimens, and screen-print posters
+         for local shows.</p>
+      <p>I care about craft, color and the tiny moments of joy in an interface —
+         the button that bounces just right.</p>
+      <div class="fun-facts">
+        <span>🖋 type nerd</span><span>🎞 riso printing</span><span>🎧 vinyl collector</span><span>🌱 plant mom</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <h2 class="sec-title reveal">What I <em>do</em></h2>
+  <div class="svc-grid">
+    <div class="svc reveal">
+      <span class="ico">✦</span>
+      <h3>Brand identity</h3>
+      <p>Logos, palettes, voice and full identity systems that feel alive — from student clubs to startups.</p>
+    </div>
+    <div class="svc reveal">
+      <span class="ico">✧</span>
+      <h3>Product &amp; UI design</h3>
+      <p>Interfaces with personality. Wireframes to polished, dev-ready design systems in Figma.</p>
+    </div>
+    <div class="svc reveal">
+      <span class="ico">❋</span>
+      <h3>Illustration &amp; print</h3>
+      <p>Editorial illustration, posters, zines and screen prints with real ink under my fingernails.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <p class="reveal" style="margin-bottom:18px;">Let's make something charming together</p>
+  <h2 class="reveal"><a href="mailto:maya@example.com">maya@example.com</a></h2>
+  <p class="reveal">or find me on <a href="#" style="font-weight:700;color:var(--coral);">Instagram</a> ·
+     <a href="#" style="font-weight:700;color:var(--blue);">Dribbble</a> ·
+     <a href="#" style="font-weight:700;color:var(--mint);">Behance</a></p>
+</section>
+
+<footer>
+  <span>© 2026 Maya Kone — demo site</span>
+  <span>Designed with too much coffee ☕</span>
+</footer>
+
+<a class="ff-badge" href="../../" title="Get your own portfolio">⚡ Built with <b>FolioForge</b> — get yours from $5/mo</a>
+
+<script>
+(() => {
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  const blob = document.querySelector(".blob-cursor");
+  if (blob && window.matchMedia("(pointer: fine)").matches) {
+    window.addEventListener("mousemove", (e) => {
+      blob.style.left = e.clientX + "px";
+      blob.style.top = e.clientY + "px";
+    }, { passive: true });
+  }
+})();
+</script>
+</body>
+</html>

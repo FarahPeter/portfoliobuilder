@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FolioForge — Stunning portfolio websites for students, from $5/month</title>
+  <meta name="description" content="We design, build and host jaw-dropping portfolio websites for students. Your own custom domain, full hosting and direct chat support — from $5/month.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="orb orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" aria-hidden="true"></div>
+  <div class="orb orb-c" aria-hidden="true"></div>
+
+  <!-- ============================ NAV ============================ -->
+  <nav class="nav" id="nav">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#22d3ee"/>
+        </linearGradient></defs>
+        <path d="M6 4h20l-3 6H13v5h9l-3 6h-6v7H6z" fill="url(#lg)"/>
+      </svg>
+      <span>Folio<em>Forge</em></span>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="examples/">Examples</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" data-app-link="login" class="nav-login">Log in</a>
+      <a href="#" data-app-link="register" class="btn btn-grad btn-sm">Get started</a>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ============================ HERO ============================ -->
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="pill reveal">🎓 Built for students, priced for students</span>
+        <h1 class="reveal" data-delay="1">
+          Your work deserves more<br>than a
+          <span class="strike">PDF resume</span>.<br>
+          Get a <span class="grad-text">portfolio that glows</span>.
+        </h1>
+        <p class="hero-sub reveal" data-delay="2">
+          We design, build and host a stunning personal website for
+          <span class="typer" id="typer">developers</span><span class="caret">|</span><br>
+          on <strong>your own custom domain</strong> — for less than a coffee a month.
+        </p>
+        <div class="hero-ctas reveal" data-delay="3">
+          <a href="#" data-app-link="register" class="btn btn-grad btn-lg">Start for $5/month</a>
+          <a href="examples/" class="btn btn-outline btn-lg">See live examples</a>
+        </div>
+        <div class="hero-note reveal" data-delay="4">
+          <span class="avatars"><i>A</i><i>M</i><i>S</i></span>
+          Chat directly with the person building your site — no bots, no tickets.
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" data-delay="2">
+        <div class="browser-mock tilt">
+          <div class="browser-bar">
+            <span class="b-dot r"></span><span class="b-dot y"></span><span class="b-dot g"></span>
+            <span class="b-url">alex.dev</span>
+          </div>
+          <div class="browser-body">
+            <div class="mock-avatar"></div>
+            <div class="mock-line w60"></div>
+            <div class="mock-line w40 dim"></div>
+            <div class="mock-cards">
+              <div class="mock-card"></div>
+              <div class="mock-card"></div>
+              <div class="mock-card"></div>
+            </div>
+            <div class="mock-bars">
+              <div class="mock-bar" style="--w:88%"></div>
+              <div class="mock-bar" style="--w:72%"></div>
+              <div class="mock-bar" style="--w:64%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="float-badge fb-1">✦ Custom domain</div>
+        <div class="float-badge fb-2">⚡ Live in 48h</div>
+        <div class="float-badge fb-3">💬 Direct chat</div>
+      </div>
+    </div>
+    <a class="scroll-hint" href="#stats" aria-label="Scroll down"><span></span></a>
+  </header>
+
+  <!-- ============================ MARQUEE ============================ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Computer Science ✦ Design ✦ Engineering ✦ Data Science ✦ Architecture ✦ Business ✦ Photography ✦ Research ✦ Marketing ✦ Fine Arts ✦ </span>
+      <span>Computer Science ✦ Design ✦ Engineering ✦ Data Science ✦ Architecture ✦ Business ✦ Photography ✦ Research ✦ Marketing ✦ Fine Arts ✦ </span>
+    </div>
+  </div>
+
+  <!-- ============================ STATS ============================ -->
+  <section class="stats" id="stats">
+    <div class="stat reveal"><b><span data-count="48">0</span>h</b><span>average build time</span></div>
+    <div class="stat reveal" data-delay="1"><b>$<span data-count="5">0</span></b><span>per month, all-inclusive</span></div>
+    <div class="stat reveal" data-delay="2"><b><span data-count="100">0</span>%</b><span>yours — your name, your domain</span></div>
+    <div class="stat reveal" data-delay="3"><b>1:1</b><span>direct chat with your builder</span></div>
+  </section>
+
+  <!-- ============================ EXAMPLES ============================ -->
+  <section class="section" id="examples">
+    <div class="section-head reveal">
+      <span class="eyebrow">Portfolio examples</span>
+      <h2>Sites that make recruiters <span class="grad-text">stop scrolling</span></h2>
+      <p>Every FolioForge site is designed from scratch around you. Explore three live demos.</p>
+    </div>
+    <div class="example-grid">
+      <a class="example-card tilt reveal" href="examples/developer/">
+        <div class="ex-thumb ex-dev">
+          <div class="ex-term-bar"><i></i><i></i><i></i></div>
+          <div class="ex-term-line">$ whoami</div>
+          <div class="ex-term-line accent">&gt; full-stack developer</div>
+          <div class="ex-term-grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="ex-info">
+          <h3>The Developer</h3>
+          <p>Terminal aesthetics, glowing project cards, animated skill matrix.</p>
+          <span class="ex-cta">View live demo →</span>
+        </div>
+      </a>
+      <a class="example-card tilt reveal" data-delay="1" href="examples/designer/">
+        <div class="ex-thumb ex-des">
+          <div class="ex-des-type">MAYA</div>
+          <div class="ex-des-blob"></div>
+          <div class="ex-des-strip"><i></i><i></i><i></i></div>
+        </div>
+        <div class="ex-info">
+          <h3>The Designer</h3>
+          <p>Bold editorial type, playful color, work that struts down the page.</p>
+          <span class="ex-cta">View live demo →</span>
+        </div>
+      </a>
+      <a class="example-card tilt reveal" data-delay="2" href="examples/data-scientist/">
+        <div class="ex-thumb ex-data">
+          <div class="ex-chart">
+            <i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:50%"></i>
+            <i style="--h:85%"></i><i style="--h:70%"></i><i style="--h:95%"></i>
+          </div>
+          <div class="ex-data-line"></div>
+        </div>
+        <div class="ex-info">
+          <h3>The Data Scientist</h3>
+          <p>Charts that draw themselves, research timeline, publication list.</p>
+          <span class="ex-cta">View live demo →</span>
+        </div>
+      </a>
+    </div>
+    <div class="center reveal">
+      <a class="btn btn-outline" href="examples/">Browse all examples</a>
+    </div>
+  </section>
+
+  <!-- ============================ HOW ============================ -->
+  <section class="section" id="how">
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>From “hi” to <span class="grad-text">live on your domain</span> in four steps</h2>
+    </div>
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step-num">01</span>
+        <h3>Tell us your story</h3>
+        <p>Create an account and chat with us. Share your projects, your vibe, sites you love.</p>
+      </li>
+      <li class="step reveal" data-delay="1">
+        <span class="step-num">02</span>
+        <h3>We forge your site</h3>
+        <p>A custom design built around your work — animations, dark mode, the lot. Nothing from a template mill.</p>
+      </li>
+      <li class="step reveal" data-delay="2">
+        <span class="step-num">03</span>
+        <h3>You polish with us</h3>
+        <p>Review a live preview and request tweaks right in the chat until it feels 100% you.</p>
+      </li>
+      <li class="step reveal" data-delay="3">
+        <span class="step-num">04</span>
+        <h3>Go live &amp; stay live</h3>
+        <p>Your site ships on your own domain with hosting, SSL and updates included in your plan.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============================ FEATURES ============================ -->
+  <section class="section" id="features">
+    <div class="section-head reveal">
+      <span class="eyebrow">What's included</span>
+      <h2>Everything you need to <span class="grad-text">stand out</span></h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature reveal"><span class="f-ico">🌐</span><h3>Your own domain</h3><p>yourname.com, registered and configured for you — it's yours, full stop.</p></div>
+      <div class="feature reveal" data-delay="1"><span class="f-ico">⚡</span><h3>Blazing fast</h3><p>Hand-tuned static sites that load instantly and score green on Lighthouse.</p></div>
+      <div class="feature reveal" data-delay="2"><span class="f-ico">🎨</span><h3>Designed, not templated</h3><p>Custom layout, motion and color built around your personality and field.</p></div>
+      <div class="feature reveal"><span class="f-ico">💬</span><h3>Edits via chat</h3><p>New project? New job? Message us and your site is updated — included.</p></div>
+      <div class="feature reveal" data-delay="1"><span class="f-ico">🔍</span><h3>Found on Google</h3><p>Clean semantic markup and metadata so your name actually ranks.</p></div>
+      <div class="feature reveal" data-delay="2"><span class="f-ico">🔒</span><h3>HTTPS &amp; hosting</h3><p>Secure hosting with SSL certificate managed for you. Zero maintenance.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================ PRICING ============================ -->
+  <section class="section" id="pricing">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2>One simple price. <span class="grad-text">Everything included.</span></h2>
+      <p>Design, build, hosting, domain and unlimited chat support. No setup fees.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <h3>Monthly</h3>
+        <div class="price"><span class="cur">$</span>5<span class="per">/month</span></div>
+        <ul>
+          <li>Custom-designed portfolio site</li>
+          <li>Your own domain + SSL</li>
+          <li>Hosting &amp; maintenance</li>
+          <li>Content updates via chat</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a href="#" data-app-link="register" class="btn btn-outline btn-block">Get started</a>
+      </div>
+      <div class="price-card featured reveal" data-delay="1">
+        <span class="ribbon">2 months free</span>
+        <h3>Yearly</h3>
+        <div class="price"><span class="cur">$</span>50<span class="per">/year</span></div>
+        <ul>
+          <li>Everything in Monthly</li>
+          <li>Priority build queue</li>
+          <li>Free yearly design refresh</li>
+          <li>Locked-in price forever</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a href="#" data-app-link="register" class="btn btn-grad btn-block">Get started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ ABOUT ============================ -->
+  <section class="section about" id="about">
+    <div class="about-inner reveal">
+      <span class="eyebrow">About FolioForge</span>
+      <h2>Made by a builder, <span class="grad-text">for the next ones</span></h2>
+      <p>
+        FolioForge started with a simple observation: the students doing the most
+        interesting work often have the least visible presence online. A GitHub full of
+        gold, a Behance nobody visits, a resume that undersells everything.
+      </p>
+      <p>
+        So we build the site you'd make for yourself if you had the weeks to spare —
+        hand-crafted, animated, fast, on a domain with your name on it. And because it's
+        run lean on our own infrastructure, it costs $5 a month instead of $50.
+      </p>
+      <p class="about-sign">— The FolioForge team ⚡</p>
+    </div>
+  </section>
+
+  <!-- ============================ FAQ ============================ -->
+  <section class="section" id="faq">
+    <div class="section-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions, <span class="grad-text">answered</span></h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>How fast will my portfolio be ready?</summary>
+        <p>Most sites go live within about 48 hours of our first chat. Complex sites (lots of projects, custom interactions) can take a few days — we'll give you a timeline up front.</p>
+      </details>
+      <details class="faq-item reveal" data-delay="1">
+        <summary>Do I really get my own domain?</summary>
+        <p>Yes. We register a domain of your choice (like <em>yourname.com</em>) and it's registered to you. If you ever leave, the domain and your content go with you.</p>
+      </details>
+      <details class="faq-item reveal" data-delay="2">
+        <summary>How do payments work?</summary>
+        <p>Simple and personal: once we agree on your plan in the chat, we send you a payment link or invoice. $5/month or $50/year — no hidden extras, cancel whenever.</p>
+      </details>
+      <details class="faq-item reveal" data-delay="3">
+        <summary>Can I update my site later?</summary>
+        <p>Anytime. Message us in the chat with your new project, internship or thesis and we'll update your site — it's included in every plan.</p>
+      </details>
+      <details class="faq-item reveal" data-delay="4">
+        <summary>What if I already have a domain?</summary>
+        <p>Even easier — we'll point it at your new site and handle all the DNS and SSL setup for you.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section class="section">
+    <div class="cta-panel reveal">
+      <h2>Ready to be <span class="grad-text">unforgettable</span>?</h2>
+      <p>Create an account and say hi — you'll be chatting with a real human in minutes.</p>
+      <a href="#" data-app-link="register" class="btn btn-grad btn-lg">Start your portfolio →</a>
+    </div>
+  </section>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <defs><linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#22d3ee"/>
+        </linearGradient></defs>
+        <path d="M6 4h20l-3 6H13v5h9l-3 6h-6v7H6z" fill="url(#lg2)"/>
+      </svg>
+      <span>Folio<em>Forge</em></span>
+    </a>
+    <div class="footer-links">
+      <a href="examples/">Examples</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" data-app-link="login">Log in</a>
+    </div>
+    <p class="footer-note">© <span id="year"></span> FolioForge · Crafted &amp; hosted with ⚡ on our own homelab</p>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

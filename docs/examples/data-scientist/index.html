@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sam Okafor — Data Scientist</title>
+<meta name="description" content="Example portfolio built by FolioForge: Sam Okafor, data science graduate student.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050c1c; --panel: #0a1428; --border: rgba(96, 165, 250, 0.16);
+  --blue: #60a5fa; --cyan: #22d3ee; --teal: #2dd4bf; --amber: #fbbf24;
+  --text: #e2ecff; --muted: #7d92b8;
+  --head: "Space Grotesk", sans-serif; --mono: "IBM Plex Mono", monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--head);
+  overflow-x: hidden; line-height: 1.65; }
+::selection { background: rgba(34, 211, 238, 0.35); }
+
+#wave { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5; }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 5vw; background: rgba(5, 12, 28, 0.8); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border); }
+nav .logo { font-family: var(--mono); font-weight: 600; color: var(--cyan);
+  text-decoration: none; font-size: 0.95rem; }
+nav ul { display: flex; gap: 26px; list-style: none; }
+nav a:not(.logo) { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color .2s; }
+nav a:not(.logo):hover { color: var(--cyan); }
+
+/* ============ hero ============ */
+.hero { position: relative; z-index: 1; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  max-width: 1100px; margin: 0 auto; padding: 130px 5vw 60px; }
+.tagline { font-family: var(--mono); color: var(--cyan); font-size: 0.82rem; margin-bottom: 18px; }
+.tagline::before { content: "▸ "; }
+.hero h1 { font-weight: 700; font-size: clamp(2.3rem, 5.4vw, 4rem);
+  line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 22px; }
+.hero h1 em { font-style: normal;
+  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--teal));
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p { color: var(--muted); max-width: 560px; margin-bottom: 34px; font-size: 1.05rem; }
+.btn { display: inline-block; padding: 13px 26px; border-radius: 12px;
+  font: 600 0.92rem var(--head); text-decoration: none; transition: all .2s; }
+.btn-fill { background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #04101f;
+  box-shadow: 0 10px 34px rgba(34, 211, 238, 0.3); }
+.btn-fill:hover { transform: translateY(-3px); box-shadow: 0 16px 44px rgba(34, 211, 238, 0.45); }
+.btn-ghost { border: 1px solid var(--border); color: var(--text); margin-left: 12px; }
+.btn-ghost:hover { border-color: var(--cyan); background: rgba(34, 211, 238, 0.08); }
+
+.hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 70px; }
+.hstat { background: rgba(10, 20, 40, 0.7); border: 1px solid var(--border);
+  border-radius: 16px; padding: 22px 20px; backdrop-filter: blur(8px); }
+.hstat b { display: block; font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hstat span { color: var(--muted); font-size: 0.8rem; }
+
+section { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 96px 5vw; }
+h2.sec { font-weight: 700; font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  letter-spacing: -0.02em; margin-bottom: 44px; }
+h2.sec::before { content: attr(data-num) " "; font-family: var(--mono);
+  color: var(--cyan); font-size: 1rem; vertical-align: middle; margin-right: 8px; }
+
+/* ============ projects w/ charts ============ */
+.proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.proj { background: var(--panel); border: 1px solid var(--border); border-radius: 18px;
+  padding: 28px; transition: transform .25s, border-color .25s, box-shadow .3s; }
+.proj:hover { transform: translateY(-6px); border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5); }
+.proj h3 { font-size: 1.12rem; margin-bottom: 8px; }
+.proj p { color: var(--muted); font-size: 0.9rem; margin-bottom: 18px; }
+.proj .viz { height: 130px; margin-bottom: 6px; }
+.mono-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.mono-tags span { font-family: var(--mono); font-size: 0.68rem; color: var(--cyan);
+  border: 1px solid var(--border); padding: 3px 10px; border-radius: 999px; }
+
+svg .axis { stroke: rgba(255, 255, 255, 0.1); stroke-width: 1; }
+svg .lineA { fill: none; stroke: var(--cyan); stroke-width: 2.5; stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.6)); }
+svg .lineB { fill: none; stroke: var(--amber); stroke-width: 2; stroke-dasharray: 5 5; opacity: .8; }
+svg .areaA { fill: url(#gradA); opacity: .35; }
+.viz.go .lineA, .viz.go .lineB { stroke-dashoffset: 0 !important; }
+svg .vbar { fill: url(#gradB); rx: 3; }
+.viz .vbar { transform: scaleY(0); transform-origin: bottom; transform-box: fill-box;
+  transition: transform 1s cubic-bezier(.22,1,.36,1); }
+.viz.go .vbar { transform: scaleY(1); }
+svg .donut-bg { fill: none; stroke: rgba(255, 255, 255, 0.08); stroke-width: 12; }
+svg .donut-fg { fill: none; stroke: var(--teal); stroke-width: 12; stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(45, 212, 191, 0.5)); transition: stroke-dashoffset 1.4s cubic-bezier(.22,1,.36,1); }
+svg .scatter circle { fill: var(--blue); opacity: 0; }
+.viz.go .scatter circle { animation: pop .5s forwards; }
+@keyframes pop { from { opacity: 0; r: 0; } to { opacity: .85; } }
+svg text { font-family: var(--mono); font-size: 9px; fill: var(--muted); }
+
+/* ============ timeline ============ */
+.timeline { position: relative; padding-left: 34px; max-width: 660px; }
+.timeline::before { content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px;
+  background: linear-gradient(var(--cyan), transparent); }
+.tl { position: relative; padding-bottom: 36px; }
+.tl::before { content: ""; position: absolute; left: -32px; top: 6px; width: 13px; height: 13px;
+  border-radius: 50%; background: var(--bg); border: 2px solid var(--cyan);
+  box-shadow: 0 0 14px rgba(34, 211, 238, 0.7); }
+.tl time { font-family: var(--mono); font-size: 0.75rem; color: var(--cyan); }
+.tl h3 { margin: 6px 0 4px; font-size: 1.05rem; }
+.tl p { color: var(--muted); font-size: 0.9rem; }
+
+/* ============ publications ============ */
+.pubs { display: flex; flex-direction: column; gap: 16px; }
+.pub { display: flex; gap: 20px; align-items: baseline;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+  padding: 20px 24px; transition: border-color .25s, transform .25s; }
+.pub:hover { border-color: rgba(34, 211, 238, 0.5); transform: translateX(8px); }
+.pub .year { font-family: var(--mono); color: var(--amber); font-size: 0.8rem; flex-shrink: 0; }
+.pub h3 { font-size: 0.98rem; font-weight: 600; }
+.pub p { color: var(--muted); font-size: 0.82rem; margin-top: 3px; }
+
+/* ============ toolbox ============ */
+.tools { display: flex; flex-wrap: wrap; gap: 12px; }
+.tool { font-family: var(--mono); font-size: 0.82rem; color: var(--text);
+  background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 18px; transition: all .2s; cursor: default; }
+.tool:hover { border-color: var(--cyan); color: var(--cyan);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.2); transform: translateY(-3px); }
+
+/* ============ contact ============ */
+.contact { text-align: center; padding-bottom: 150px; }
+.contact p { color: var(--muted); max-width: 480px; margin: 0 auto 30px; }
+
+footer { border-top: 1px solid var(--border); text-align: center;
+  padding: 32px 5vw 110px; color: var(--muted); font-family: var(--mono); font-size: 0.75rem;
+  position: relative; z-index: 1; }
+
+.ff-badge { position: fixed; right: 18px; bottom: 18px; z-index: 50;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(5, 6, 15, 0.92); border: 1px solid rgba(124, 58, 237, 0.5);
+  color: #e9ebf8; text-decoration: none; font: 600 0.75rem var(--head);
+  padding: 9px 15px; border-radius: 999px; backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: transform .2s, box-shadow .3s; }
+.ff-badge:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(124, 58, 237, 0.4); }
+.ff-badge b { background: linear-gradient(135deg, #a78bfa, #22d3ee);
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+@media (max-width: 860px) {
+  nav ul { display: none; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<canvas id="wave" aria-hidden="true"></canvas>
+
+<nav>
+  <a class="logo" href="#top">sam_okafor.ipynb</a>
+  <ul>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <span class="tagline">data scientist · ML researcher · MSc candidate</span>
+  <h1>I turn messy data into<br><em>decisions people trust</em>.</h1>
+  <p>I'm Sam — a data science grad student working on interpretable machine learning
+     for healthcare. I like models that explain themselves and plots that need no caption.</p>
+  <div>
+    <a class="btn btn-fill" href="#projects">Explore my work</a>
+    <a class="btn btn-ghost" href="#contact">Get in touch</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat reveal"><b><span data-count="12">0</span></b><span>research projects</span></div>
+    <div class="hstat reveal" data-delay="1"><b><span data-count="4">0</span></b><span>publications</span></div>
+    <div class="hstat reveal" data-delay="2"><b><span data-count="98">0</span>%</b><span>best model AUC</span></div>
+    <div class="hstat reveal" data-delay="3"><b><span data-count="30">0</span>TB</b><span>data wrangled</span></div>
+  </div>
+</header>
+
+<section id="projects">
+  <h2 class="sec reveal" data-num="01">Projects that shipped</h2>
+  <div class="proj-grid">
+    <article class="proj reveal">
+      <div class="viz">
+        <svg viewBox="0 0 300 130" width="100%" height="100%" preserveAspectRatio="none">
+          <defs><linearGradient id="gradA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="transparent"/>
+          </linearGradient></defs>
+          <line class="axis" x1="0" y1="110" x2="300" y2="110"/>
+          <path class="areaA" d="M0,95 C40,90 60,70 90,72 C120,74 140,50 180,45 C220,40 250,28 300,18 L300,110 L0,110 Z"/>
+          <path class="lineA" d="M0,95 C40,90 60,70 90,72 C120,74 140,50 180,45 C220,40 250,28 300,18"
+                stroke-dasharray="420" stroke-dashoffset="420" style="transition: stroke-dashoffset 1.8s ease;"/>
+          <path class="lineB" d="M0,100 C50,98 90,88 140,80 C190,72 240,68 300,60"
+                stroke-dasharray="330" stroke-dashoffset="330" style="transition: stroke-dashoffset 1.8s ease .3s;"/>
+          <text x="6" y="14">model AUC vs baseline</text>
+        </svg>
+      </div>
+      <h3>Sepsis early-warning model</h3>
+      <p>Gradient-boosted survival model predicting sepsis onset 6h earlier than the clinical baseline, deployed in a hospital pilot.</p>
+      <div class="mono-tags"><span>XGBoost</span><span>SHAP</span><span>survival analysis</span></div>
+    </article>
+
+    <article class="proj reveal" data-delay="1">
+      <div class="viz">
+        <svg viewBox="0 0 300 130" width="100%" height="100%" preserveAspectRatio="none">
+          <defs><linearGradient id="gradB" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0" stop-color="#1d4ed8"/><stop offset="1" stop-color="#22d3ee"/>
+          </linearGradient></defs>
+          <line class="axis" x1="0" y1="110" x2="300" y2="110"/>
+          <rect class="vbar" x="20"  y="70" width="26" height="40" style="transition-delay:.05s"/>
+          <rect class="vbar" x="60"  y="55" width="26" height="55" style="transition-delay:.15s"/>
+          <rect class="vbar" x="100" y="62" width="26" height="48" style="transition-delay:.25s"/>
+          <rect class="vbar" x="140" y="38" width="26" height="72" style="transition-delay:.35s"/>
+          <rect class="vbar" x="180" y="45" width="26" height="65" style="transition-delay:.45s"/>
+          <rect class="vbar" x="220" y="22" width="26" height="88" style="transition-delay:.55s"/>
+          <rect class="vbar" x="260" y="30" width="26" height="80" style="transition-delay:.65s"/>
+          <text x="6" y="14">weekly active users after launch</text>
+        </svg>
+      </div>
+      <h3>Campus energy dashboard</h3>
+      <p>Live dashboard forecasting energy use across 40 university buildings; saved an estimated 8% on heating costs.</p>
+      <div class="mono-tags"><span>Prophet</span><span>Airflow</span><span>Grafana</span></div>
+    </article>
+
+    <article class="proj reveal">
+      <div class="viz" style="display:flex;align-items:center;gap:22px;">
+        <svg viewBox="0 0 130 130" width="120" height="120">
+          <circle class="donut-bg" cx="65" cy="65" r="48"/>
+          <circle class="donut-fg" cx="65" cy="65" r="48" transform="rotate(-90 65 65)"
+                  stroke-dasharray="301.6" stroke-dashoffset="301.6" data-target="45.2"/>
+          <text x="65" y="62" text-anchor="middle" style="font-size:20px;fill:#e2ecff;font-weight:600;" class="donut-label">0%</text>
+          <text x="65" y="80" text-anchor="middle">accuracy gain</text>
+        </svg>
+        <p style="color:var(--muted);font-size:.82rem;flex:1;">Fine-tuned compact language models for medical triage notes — 85% smaller, same accuracy.</p>
+      </div>
+      <h3>TriageLM</h3>
+      <p>Distilled clinical language model for triage classification, running on-prem for privacy.</p>
+      <div class="mono-tags"><span>PyTorch</span><span>distillation</span><span>NLP</span></div>
+    </article>
+
+    <article class="proj reveal" data-delay="1">
+      <div class="viz">
+        <svg viewBox="0 0 300 130" width="100%" height="100%" preserveAspectRatio="none">
+          <line class="axis" x1="0" y1="110" x2="300" y2="110"/>
+          <line class="axis" x1="20" y1="0" x2="20" y2="110"/>
+          <g class="scatter">
+            <circle cx="45" cy="88" r="5" style="animation-delay:.05s"/><circle cx="70" cy="70" r="4" style="animation-delay:.12s"/>
+            <circle cx="95" cy="78" r="6" style="animation-delay:.19s"/><circle cx="120" cy="58" r="4" style="animation-delay:.26s"/>
+            <circle cx="150" cy="62" r="7" style="animation-delay:.33s"/><circle cx="175" cy="44" r="5" style="animation-delay:.40s"/>
+            <circle cx="205" cy="50" r="4" style="animation-delay:.47s"/><circle cx="230" cy="32" r="6" style="animation-delay:.54s"/>
+            <circle cx="258" cy="38" r="5" style="animation-delay:.61s"/><circle cx="282" cy="22" r="7" style="animation-delay:.68s"/>
+          </g>
+          <text x="26" y="14">bike demand vs temperature</text>
+        </svg>
+      </div>
+      <h3>City bike-share rebalancing</h3>
+      <p>Demand forecasting + optimization that cut "no bikes available" complaints by a third in simulation.</p>
+      <div class="mono-tags"><span>scikit-learn</span><span>OR-Tools</span><span>GeoPandas</span></div>
+    </article>
+  </div>
+</section>
+
+<section id="research">
+  <h2 class="sec reveal" data-num="02">Research journey</h2>
+  <div class="timeline">
+    <div class="tl reveal">
+      <time>2025 — now</time>
+      <h3>MSc Data Science · thesis on interpretable ML</h3>
+      <p>Building faithfulness metrics for post-hoc explanations in clinical models.</p>
+    </div>
+    <div class="tl reveal">
+      <time>2024</time>
+      <h3>Research intern · National Health Data Lab</h3>
+      <p>Federated learning pipelines across six hospitals without moving a single patient record.</p>
+    </div>
+    <div class="tl reveal">
+      <time>2022 — 2024</time>
+      <h3>BSc Statistics · first-class honours</h3>
+      <p>Thesis: Bayesian hierarchical models for small-area disease mapping.</p>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <h2 class="sec reveal" data-num="03">Publications</h2>
+  <div class="pubs">
+    <a class="pub reveal" href="#">
+      <span class="year">2026</span>
+      <div><h3>Do explanations help clinicians? A randomized study of SHAP in triage</h3>
+      <p>Okafor S., et al. — under review</p></div>
+    </a>
+    <a class="pub reveal" href="#">
+      <span class="year">2025</span>
+      <div><h3>FedTriage: privacy-preserving triage models across hospital silos</h3>
+      <p>Okafor S., Lindqvist A. — ML4H Workshop, NeurIPS</p></div>
+    </a>
+    <a class="pub reveal" href="#">
+      <span class="year">2025</span>
+      <div><h3>Calibration drift in deployed clinical models: a 12-month audit</h3>
+      <p>Okafor S., et al. — JAMIA Open</p></div>
+    </a>
+    <a class="pub reveal" href="#">
+      <span class="year">2024</span>
+      <div><h3>Bayesian small-area estimation of respiratory disease burden</h3>
+      <p>Okafor S. — undergraduate thesis, awarded department prize</p></div>
+    </a>
+  </div>
+</section>
+
+<section id="toolbox">
+  <h2 class="sec reveal" data-num="04">Toolbox</h2>
+  <div class="tools reveal">
+    <span class="tool">Python</span><span class="tool">R</span><span class="tool">SQL</span>
+    <span class="tool">PyTorch</span><span class="tool">scikit-learn</span><span class="tool">XGBoost</span>
+    <span class="tool">pandas</span><span class="tool">Spark</span><span class="tool">Airflow</span>
+    <span class="tool">dbt</span><span class="tool">Docker</span><span class="tool">Tableau</span>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2 class="sec reveal" data-num="05" style="text-align:center;">Let's collaborate</h2>
+  <p class="reveal">Open to research collaborations, internships and interesting datasets.
+     The weirder the data, the better.</p>
+  <a class="btn btn-fill reveal" href="mailto:sam@example.com">sam@example.com</a>
+</section>
+
+<footer>© 2026 Sam Okafor — demo site · plots drawn live in your browser</footer>
+
+<a class="ff-badge" href="../../" title="Get your own portfolio">⚡ Built with <b>FolioForge</b> — get yours from $5/mo</a>
+
+<script>
+(() => {
+  // reveal
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  // charts animate when visible
+  const vio = new IntersectionObserver((es) => {
+    es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      vio.unobserve(e.target);
+      e.target.classList.add("go");
+      // line charts
+      e.target.querySelectorAll(".lineA, .lineB").forEach((p) => (p.style.strokeDashoffset = "0"));
+      // donut
+      const donut = e.target.querySelector(".donut-fg");
+      if (donut) {
+        const pct = parseFloat(donut.dataset.target);
+        const c = 2 * Math.PI * 48;
+        donut.style.strokeDashoffset = c * (1 - pct / 100);
+        const label = e.target.querySelector(".donut-label");
+        const start = performance.now();
+        const tick = (t) => {
+          const p = Math.min((t - start) / 1400, 1);
+          label.textContent = (pct * (1 - Math.pow(1 - p, 3))).toFixed(0) + "%";
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll(".viz").forEach((el) => vio.observe(el));
+
+  // counters
+  const cio = new IntersectionObserver((es) => {
+    es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      const el = e.target, target = parseInt(el.dataset.count, 10), start = performance.now();
+      const tick = (t) => {
+        const p = Math.min((t - start) / 1300, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll("[data-count]").forEach((el) => cio.observe(el));
+
+  // background wave canvas
+  const canvas = document.getElementById("wave");
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    let w, h;
+    const resize = () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; };
+    resize();
+    addEventListener("resize", resize);
+    const waves = [
+      { amp: 26, freq: 0.008, speed: 0.012, y: 0.75, color: "rgba(96, 165, 250, 0.10)" },
+      { amp: 34, freq: 0.006, speed: 0.008, y: 0.82, color: "rgba(34, 211, 238, 0.08)" },
+      { amp: 20, freq: 0.011, speed: 0.016, y: 0.7,  color: "rgba(45, 212, 191, 0.07)" },
+    ];
+    let t = 0;
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      for (const wv of waves) {
+        ctx.beginPath();
+        ctx.moveTo(0, h);
+        for (let x = 0; x <= w; x += 6) {
+          ctx.lineTo(x, h * wv.y + Math.sin(x * wv.freq + t * wv.speed * 60) * wv.amp);
+        }
+        ctx.lineTo(w, h);
+        ctx.closePath();
+        ctx.fillStyle = wv.color;
+        ctx.fill();
+      }
+      t += 0.016;
+      requestAnimationFrame(draw);
+    };
+    draw();
+  }
+})();
+</script>
+</body>
+</html>
