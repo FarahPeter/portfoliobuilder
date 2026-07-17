@@ -6,5 +6,5 @@
    Every Login / Get started button on the static site uses it.
    ============================================================ */
 window.FF_CONFIG = {
-  appUrl: "https://peterfarah.com/portfoliobuilder",
+  appUrl: "builder.peterfarah.com",
 };
